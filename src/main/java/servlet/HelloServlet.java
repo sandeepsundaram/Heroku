@@ -55,8 +55,8 @@ public class HelloServlet extends HttpServlet {
 				JSONObject object = (JSONObject) new JSONTokener(fbBody).nextValue();
 				String name = object.getString("name");
 				String bio = object.getString("bio");
-				out.write(("<b>name</b> : "+name).getBytes());
-				out.write(("<b>bio</b> : "+bio).getBytes());
+				out.write(("<i>name</i> : <b>"+name + "</b>\n").getBytes());
+				out.write(("<i>bio</i> : <b>"+bio+"</b>").getBytes());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}				

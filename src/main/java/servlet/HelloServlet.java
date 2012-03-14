@@ -60,6 +60,7 @@ public class HelloServlet extends HttpServlet {
 //				out.write(("bio : "+bio).getBytes());
 				request.getSession().setAttribute("name", name);
 				request.getSession().setAttribute("bio", bio);
+				request.getSession().setAttribute("fbBody", fbBody);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}				

@@ -1,6 +1,9 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +22,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import utils.JSONUtils;
 import utils.URLUtils;
 
 @WebServlet(
@@ -54,13 +58,23 @@ public class HelloServlet extends HttpServlet {
 			String fbBody = oResponse.getBody();
 			try {
 				request.getSession().setAttribute("fbBody", fbBody);
-				JSONObject object = (JSONObject) new JSONTokener(fbBody).nextValue();
-				String name = object.getString("name");
+				JSONUtils jUtils = new JSONUtils();
+				jUtils.initialize(fbBody);
+				String name = jUtils.getValue("name").getStringValue();
 				request.getSession().setAttribute("name", name);
-				String bio = object.getString("bio");
-				request.getSession().setAttribute("bio", bio);				
+				String bio = jUtils.getValue("bio").getStringValue();
+				request.getSession().setAttribute("bio", bio);	
+				String dob = jUtils.getValue("birthday").getStringValue();
+				if(dob != null) {
+					SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+					Date date = formatter.parse(dob); 
+					request.getSession().setAttribute("dob", dob);	
+				}
 			} catch (JSONException e) {
 				
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}				
 		} else {
 			String body = resp.getBody();

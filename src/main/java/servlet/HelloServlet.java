@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -30,7 +31,7 @@ public class HelloServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		ServletOutputStream out = response.getOutputStream();
+		
 		String code = request.getParameter("code");
 
 		String accesstokenURL = "https://graph.facebook.com/oauth/access_token?" + 
@@ -55,8 +56,10 @@ public class HelloServlet extends HttpServlet {
 				JSONObject object = (JSONObject) new JSONTokener(fbBody).nextValue();
 				String name = object.getString("name");
 				String bio = object.getString("bio");
-				out.write(("name : "+name + " \n").getBytes());
-				out.write(("bio : "+bio).getBytes());
+//				out.write(("name : "+name + " \n").getBytes());
+//				out.write(("bio : "+bio).getBytes());
+				request.getSession().setAttribute("name", name);
+				request.getSession().setAttribute("bio", bio);
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}				
@@ -64,15 +67,19 @@ public class HelloServlet extends HttpServlet {
 			String body = resp.getBody();
 			JSONObject object;
 			try {
+				ServletOutputStream out = response.getOutputStream();
 				object = (JSONObject) new JSONTokener(body).nextValue();
 				String error = object.getString("error");
 				out.write(error.getBytes());
+				out.flush();
+				out.close();
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}			
-		}        
-		out.flush();
-		out.close();
+		}     
+		
+		RequestDispatcher rd = request.getRequestDispatcher("showDetails.jsp");
+		rd.forward(request, response);
 	}
 
 }

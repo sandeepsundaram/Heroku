@@ -32,7 +32,6 @@ public class HelloServlet extends HttpServlet {
 			throws ServletException, IOException {
 		ServletOutputStream out = response.getOutputStream();
 		String code = request.getParameter("code");
-		out.println();
 
 		String accesstokenURL = "https://graph.facebook.com/oauth/access_token?" + 
 				"client_id=%s&redirect_uri=%s&client_secret=%s&code=%s";
@@ -56,8 +55,8 @@ public class HelloServlet extends HttpServlet {
 				JSONObject object = (JSONObject) new JSONTokener(fbBody).nextValue();
 				String name = object.getString("name");
 				String bio = object.getString("bio");
-				out.println("<b>name</b> : "+name);
-				out.println("<b>bio</b> : "+bio);
+				out.write(("<b>name</b> : "+name).getBytes());
+				out.write(("<b>bio</b> : "+bio).getBytes());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}				
@@ -67,7 +66,7 @@ public class HelloServlet extends HttpServlet {
 			try {
 				object = (JSONObject) new JSONTokener(body).nextValue();
 				String error = object.getString("error");
-				out.println(error);
+				out.write(error.getBytes());
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}			

@@ -53,16 +53,14 @@ public class HelloServlet extends HttpServlet {
 			Response oResponse = oRequest.send();
 			String fbBody = oResponse.getBody();
 			try {
+				request.getSession().setAttribute("fbBody", fbBody);
 				JSONObject object = (JSONObject) new JSONTokener(fbBody).nextValue();
 				String name = object.getString("name");
-				String bio = object.getString("bio");
-//				out.write(("name : "+name + " \n").getBytes());
-//				out.write(("bio : "+bio).getBytes());
 				request.getSession().setAttribute("name", name);
-				request.getSession().setAttribute("bio", bio);
-				request.getSession().setAttribute("fbBody", fbBody);
+				String bio = object.getString("bio");
+				request.getSession().setAttribute("bio", bio);				
 			} catch (JSONException e) {
-				e.printStackTrace();
+				
 			}				
 		} else {
 			String body = resp.getBody();

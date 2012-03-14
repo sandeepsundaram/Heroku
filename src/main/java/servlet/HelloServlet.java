@@ -48,14 +48,19 @@ public class HelloServlet extends HttpServlet {
 			tokens = tokens[0].split("=");
 			String accessToken = tokens[1];
 
-			// Now let's go and ask for a protected resource!
-			out.println("Now we're going to access a protected resource...");
 			OAuthRequest oRequest = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
 			oRequest.addQuerystringParameter("access_token", accessToken);
 			Response oResponse = oRequest.send();
-			out.println();
-			out.println(oResponse.getCode());
-			out.println(oResponse.getBody());
+			String fbBody = oResponse.getBody();
+			try {
+				JSONObject object = (JSONObject) new JSONTokener(fbBody).nextValue();
+				String name = object.getString("name");
+				String bio = object.getString("bio");
+				out.println("<b>name</b> : "+name);
+				out.println("<b>bio</b> : "+bio);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}				
 		} else {
 			String body = resp.getBody();
 			JSONObject object;

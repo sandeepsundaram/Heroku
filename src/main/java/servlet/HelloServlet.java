@@ -17,6 +17,7 @@ import model.OAuthRequest;
 import model.Request;
 import model.Response;
 import model.Verb;
+import model.Zodiac;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,6 +25,7 @@ import org.json.JSONTokener;
 
 import utils.JSONUtils;
 import utils.URLUtils;
+import utils.ZodiacUtil;
 
 @WebServlet(
 		name = "MyServlet", 
@@ -57,20 +59,23 @@ public class HelloServlet extends HttpServlet {
 			oRequest.addQuerystringParameter("access_token", accessToken);
 			Response oResponse = oRequest.send();
 			String fbBody = oResponse.getBody();
-			try {
-				request.getSession().setAttribute("fbBody", fbBody);
+			try {				
 				JSONUtils jUtils = new JSONUtils();
 				jUtils.initialize(fbBody);
 				String name = jUtils.getValue("name").getStringValue();
-				request.getSession().setAttribute("name", name);
-				String bio = jUtils.getValue("bio").getStringValue();
-				request.getSession().setAttribute("bio", bio);	
+				String bio = jUtils.getValue("bio").getStringValue();				
 				String dob = jUtils.getValue("birthday").getStringValue();
+				Date date = null;
 				if(dob != null) {
 					SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-					Date date = formatter.parse(dob); 
+					date = formatter.parse(dob); 
 					request.getSession().setAttribute("dob", dob);	
 				}
+				Zodiac zod = ZodiacUtil.getZodiac(date);
+				zod.setBio(bio);
+				zod.setName(name);
+				request.getSession().setAttribute("zodiac", zod);
+				
 			} catch (JSONException e) {
 				
 			} catch (ParseException e) {
@@ -92,7 +97,7 @@ public class HelloServlet extends HttpServlet {
 			}			
 		}     
 		
-		RequestDispatcher rd = request.getRequestDispatcher("showDetails.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("zodiac.jsp");
 		rd.forward(request, response);
 	}
 

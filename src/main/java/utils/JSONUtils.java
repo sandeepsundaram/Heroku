@@ -19,7 +19,7 @@ public class JSONUtils {
 		try {
 			value = jObj.getString(key);			
 		} catch (JSONException e) {
-			e.printStackTrace();
+			handlException(e);
 		}
 		
 		return this;
@@ -38,5 +38,10 @@ public class JSONUtils {
 		
 		return null;
 	}	
+	
+	public void handlException(Exception e) {
+		e.printStackTrace();
+		value = null;
+	}
 
 }

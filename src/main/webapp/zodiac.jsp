@@ -16,12 +16,14 @@
     <header>
     	<div id="headercontainer">    
     		<h1><a class="introlink anchorLink"><%= zod.getName() %></a></h1>   
+			<nav>
 			<ul>
 				<li><a class="introlink anchorLink" href="#intro">Intro</a></li>
 				<li><a class="portfoliolink anchorLink" href="#portfolio">Portfolio</a></li>
 				<li><a class="aboutlink anchorLink" href="#about">About</a></li>
 				<li><a class="contactlink anchorLink" href="#contact">Contact</a></li>
-			</ul>				
+			</ul>	
+			</nav>			
     	</div>    
     </header>
 

@@ -64,4 +64,4 @@ header { padding: 5px 0; width: 100%; background-color: #000; margin-bottom: 25p
 #headercontainer, #contentcontainer { width: 1060px; margin: 0 auto; position: relative; }
 #contentcontainer { float: none; padding-top: 0px; }
 
-section { margin-bottom: 250px; padding-top: 120px; float: left; }
+section { margin-bottom: 200px; padding-top: 120px; float: left; }

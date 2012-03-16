@@ -77,9 +77,8 @@ public class HelloServlet extends HttpServlet {
 				request.getSession().setAttribute("zodiac", zod);
 				
 			} catch (JSONException e) {
-				
+				e.printStackTrace();
 			} catch (ParseException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}				
 		} else {

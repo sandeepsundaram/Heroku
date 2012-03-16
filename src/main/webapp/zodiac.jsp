@@ -17,9 +17,6 @@
     	<div id="headercontainer">    
     		<h1><a class="introlink anchorLink"><%= zod.getName() %></a></h1>    	
     	</div>    
-		<iframe src="https://www.facebook.com/plugins/like.php?href=http://afternoon-galaxy-4740.herokuapp.com/hello"
-        scrolling="no" frameborder="0"
-        style="border:none; width:40px; height:10px"></iframe>
     </header>
 
     <section id="contentcontainer"> 
@@ -42,6 +39,11 @@
     	</section>
     			
     </section>
+	<footer>
+			<iframe src="https://www.facebook.com/plugins/like.php?href=http://afternoon-galaxy-4740.herokuapp.com/hello"
+        scrolling="no" frameborder="0"
+        style="border:none; width:450px; height:80px></iframe>
+	</footer>
     
 </body>
 

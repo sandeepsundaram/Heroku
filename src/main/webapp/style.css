@@ -6,7 +6,7 @@ aside, nav, article, figure {
 	display: block;
 }
 
-body { font-family: Keffeesatz, Arial; color: #4b4b4b; background: url(images/pattern.gif); text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
+body { color: #4b4b4b; background: url(images/pattern.gif); text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2); }
 
 ::selection { background-color: rgba(122, 192, 0, 0.2); }
 ::-moz-selection { background-color: rgba(122, 192, 0, 0.2); border: 10px solid red; }

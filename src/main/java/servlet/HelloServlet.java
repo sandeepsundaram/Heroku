@@ -19,6 +19,7 @@ import model.Response;
 import model.Verb;
 import model.Zodiac;
 
+import org.apache.catalina.Server;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
@@ -37,12 +38,12 @@ public class HelloServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String code = request.getParameter("code");
 
 		String accesstokenURL = "https://graph.facebook.com/oauth/access_token?" + 
 				"client_id=%s&redirect_uri=%s&client_secret=%s&code=%s";
-		
+
 		accesstokenURL = String.format(accesstokenURL, "284063838333812", 
 				URLUtils.urlEncodeWrapper("http://afternoon-galaxy-4740.herokuapp.com/hello"), 
 				"2f00e440583d9fb8384b2a399e22b69e", code);		
@@ -75,7 +76,7 @@ public class HelloServlet extends HttpServlet {
 				zod.setBio(bio);
 				zod.setName(name);
 				request.getSession().setAttribute("zodiac", zod);
-				
+
 			} catch (JSONException e) {
 				e.printStackTrace();
 			} catch (ParseException e) {
@@ -95,9 +96,8 @@ public class HelloServlet extends HttpServlet {
 				e.printStackTrace();
 			}			
 		}     
-		
+
 		RequestDispatcher rd = request.getRequestDispatcher("zodiac.jsp");
 		rd.forward(request, response);
 	}
-
 }

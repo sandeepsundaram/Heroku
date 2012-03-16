@@ -17,8 +17,8 @@ public class JSONUtils {
 	
 	public JSONUtils getValue(String key) {
 		try {
-			value = jObj.getString(key);			
-		} catch (JSONException e) {
+			value = jObj.getString(key);		
+		} catch (Exception e) {
 			handlException(e);
 		}
 		

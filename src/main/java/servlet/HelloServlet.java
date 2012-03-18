@@ -88,19 +88,20 @@ public class HelloServlet extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("zodiac.jsp");
 			rd.forward(request, response);
 		} else {
-			String body = resp.getBody();
-			JSONObject object;
-			try {
-				ServletOutputStream out = response.getOutputStream();
-				object = (JSONObject) new JSONTokener(body).nextValue();
-				String error = object.getString("error");
-				out.write(error.getBytes());
-				out.flush();
-				out.close();
-			} catch (JSONException e) {
-				e.printStackTrace();
-				throw new ServletException(e);
-			}		
+			throw new ServletException(resp.getCode()+"");
+//			String body = resp.getBody();
+//			JSONObject object;
+//			try {
+//				ServletOutputStream out = response.getOutputStream();
+//				object = (JSONObject) new JSONTokener(body).nextValue();
+//				String error = object.getString("error");
+//				out.write(error.getBytes());
+//				out.flush();
+//				out.close();
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//				
+//			}		
 		}
 	}
 

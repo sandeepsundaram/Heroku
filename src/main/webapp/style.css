@@ -48,12 +48,10 @@ span { font-size: 18px; float: left; color: #4b4b4b; }
 span.block {padding-top: 30px;}
 
 #intro ul { padding-left: 80px; font-size: 14px;}
+#intro { margin-bottom: 0px; }
 span.about { padding-left: 80px; font-size: 14px;}
 
 h2.intro { background: url(images/intro.png) no-repeat -10px -10px; }
-h2.work { background: url(images/portfolio.png) no-repeat -10px -10px; }
-h2.about { background: url(images/about.png) no-repeat -10px -10px; }
-h2.contact { background: url(images/contact.png) no-repeat -10px -10px; }
 
 nav { width: auto; float: left; }
 nav ul { position: absolute; right: 0; display: block; margin-top: -37px; }

@@ -26,14 +26,21 @@
 
     <section id="contentcontainer"> 
     
-    	<section id="intro">    	
-    		<h2 class="intro">sss</h2>    	
+    	<section id="intro">
+    	
+    		<h2 class="intro"><%= zod.getSunSign() %></h2>
+    		
+    		<p>s</p>
+    	
     	</section>
  
-		<footer>    	
+		<footer> <!-- HTML5 footer tag -->
+    	
     		<ul>
-    			<li><a href="http://twitter.com/mssandy">Follow me on Twitter</a></li>    			
-    		</ul>    	
+    			<li><a href="http://twitter.com/mssandy">Follow me on Twitter</a></li>
+    			
+    		</ul>
+    	
     	</footer>	
     
     </section>

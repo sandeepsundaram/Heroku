@@ -44,7 +44,7 @@ h1 a:hover { color: #fff; border-bottom: 1px solid rgba(0, 0, 0, 0.4); padding-b
 
 h2 { padding-left: 80px; font-size: 22px; color: #4b4b4b; height: 50px; }
 div.sub { font-size:28px;color: #ff5400; }
-
+span { font-size: 18px; float: left; color: #4b4b4b; }
 span.block {padding-top: 30px;}
 
 .zodiac ul { padding-left: 80px; font-size: 14px;}
@@ -75,5 +75,5 @@ footer { float: left; margin-top: 50px; }
 footer ul { margin-bottom: 150px; }
 footer ul li { display: inline; margin-right: 50px; }
 footer ul li a { font-size: 8px; margin-left: 10px; }
-
+footer ul li img { vertical-align: bottom; position: relative; top: 2px; }
 

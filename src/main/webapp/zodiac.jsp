@@ -28,7 +28,7 @@
     
     	<section id="intro">
     	
-<h2 class="intro"><div class="sub"><%= zod.getSunSign() %></div></h2>				
+		<h2 class="intro"><div class="sub"><%= zod.getSunSign() %></div></h2>				
 			<ul>
 				<li>
 					Chinese Zodiac: <%= zod.getChineseSign() %>
@@ -38,18 +38,7 @@
 				</li>
 			</ul>
 						
-			<span class="block">
-				<h2 class="about">About Me</h2>  
-				<span class="about">				
-					<% 
-						String charactor = zod.getCharactor(); 
-						String[] props = charactor.split(",");
-						for(String c : props) {
-							out.print(c);
-					%><br> 
-					<% } %>
-				</span>				
-			</span>	
+
     	
     	</section>
  

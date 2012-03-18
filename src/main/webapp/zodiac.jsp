@@ -27,7 +27,7 @@
     <section id="contentcontainer"> 
     
     	<section id="intro">    	
-    		<h2 class="intro"><%= zod.getSunSign() %></h2>    	
+    		<h2 class="intro">sss</h2>    	
     	</section>
  
 		<footer>    	

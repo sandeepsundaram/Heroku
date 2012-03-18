@@ -47,7 +47,7 @@ div.sub { font-size:28px;color: #ff5400; }
 span { font-size: 18px; float: left; color: #4b4b4b; }
 span.block {padding-top: 30px;}
 
-ul { padding-left: 80px; font-size: 14px;}
+section ul { padding-left: 80px; font-size: 14px;}
 span.about { padding-left: 80px; font-size: 14px;}
 
 h2.intro { background: url(images/intro.png) no-repeat -10px -10px; }

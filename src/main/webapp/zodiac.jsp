@@ -57,7 +57,7 @@
 			<li><a href="http://twitter.com/mssandy">Follow me on Twitter</a></li>			
 		</ul>	
 		
-		<iframe src="https://www.facebook.com/plugins/like.php?href=http://afternoon-galaxy-4740.herokuapp.com/hello"
+		<iframe src="https://www.facebook.com/plugins/like.php?href=https://graph.facebook.com/oauth/authorize?response_type=code&client_id=284063838333812&redirect_uri=http%3A%2F%2Fafternoon-galaxy-4740.herokuapp.com%2Fhello&scope=email,user_birthday"
         scrolling="no" frameborder="0"
         style="border:none; width:450px; height:80px"></iframe>
 	</footer>

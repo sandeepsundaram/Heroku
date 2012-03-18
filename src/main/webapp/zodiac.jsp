@@ -42,7 +42,13 @@
 						
 			<span class="block">
 				<h2 class="about">About Me</h2>    		
-				<p><%= zod.getCharactor() %></p>			
+				<% 
+					String charactor = zod.getCharactor(); 
+					String[] props = charactor.split(",");
+					for(String c : chars) {
+				%>
+				<p><% out.print(c); %></p><br> 
+				<% } %>
     	    </span>	
     	</section>
     			

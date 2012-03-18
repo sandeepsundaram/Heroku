@@ -45,7 +45,7 @@
 				<% 
 					String charactor = zod.getCharactor(); 
 					String[] props = charactor.split(",");
-					for(String c : chars) {
+					for(String c : props) {
 				%>
 				<p><% out.print(c); %></p><br> 
 				<% } %>

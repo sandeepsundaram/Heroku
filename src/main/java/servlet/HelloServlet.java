@@ -56,7 +56,7 @@ public class HelloServlet extends HttpServlet {
 				String[] tokens = body.split("&");
 				tokens = tokens[0].split("=");
 				String accessToken = tokens[1];
-			
+
 				OAuthRequest oRequest = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
 				oRequest.addQuerystringParameter("access_token", accessToken);
 				Response oResponse = oRequest.send();
@@ -78,31 +78,30 @@ public class HelloServlet extends HttpServlet {
 					zod.setBio(bio);
 					zod.setName(name);
 					request.getSession().setAttribute("zodiac", zod);
-	
+
 				} catch (JSONException e) {
 					e.printStackTrace();
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}				
-			} else {
-				body = resp.getBody();
-				JSONObject object;
-				try {
-					ServletOutputStream out = response.getOutputStream();
-					object = (JSONObject) new JSONTokener(body).nextValue();
-					String error = object.getString("error");
-					out.write(error.getBytes());
-					out.flush();
-					out.close();
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}		
-			}
-		}     
-
-		RequestDispatcher rd = request.getRequestDispatcher("zodiac.jsp");
-		rd.forward(request, response);
+			} 
+			RequestDispatcher rd = request.getRequestDispatcher("zodiac.jsp");
+			rd.forward(request, response);
+		} else {
+			String body = resp.getBody();
+			JSONObject object;
+			try {
+				ServletOutputStream out = response.getOutputStream();
+				object = (JSONObject) new JSONTokener(body).nextValue();
+				String error = object.getString("error");
+				out.write(error.getBytes());
+				out.flush();
+				out.close();
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}		
+		}
 	}
-	
-    
+
+
 }

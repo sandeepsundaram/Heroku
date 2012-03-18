@@ -29,19 +29,7 @@
     	<section id="intro">
     	
 
-						
-			<span class="block">
-				<h2 class="about">About Me</h2>  
-				<span class="about">				
-					<% 
-						String charactor = zod.getCharactor(); 
-						String[] props = charactor.split(",");
-						for(String c : props) {
-							out.print(c);
-					%><br> 
-					<% } %>
-				</span>				
-			</span>	
+
     	
     	</section>
  

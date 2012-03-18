@@ -72,9 +72,9 @@ header { padding: 5px 0; width: 100%; background-color: #000; margin-bottom: 25p
 
 section { margin-bottom: 150px; padding-top: 120px; float: left; }
 
-footer { float: left; margin-top: 750px; position: relative;}
+footer { float: left; margin-top: 550px; position: relative;}
 footer ul { margin-bottom: 150px; }
 footer ul li { display: inline; margin-right: 50px; }
-footer ul li a { font-size: 24px; margin-left: 10px; }
+footer ul li a { font-size: 24px; margin-left: 1px; }
 footer ul li img { vertical-align: bottom; position: relative; top: 2px; }
 

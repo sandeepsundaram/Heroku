@@ -67,7 +67,7 @@ a:active { color: #ff5400; text-decoration: none; border-bottom: 1px solid #ff54
 p { font-size: 12px; margin-bottom: 15px; line-height: 18px; }
 
 header { padding: 5px 0; width: 100%; background-color: #000; margin-bottom: 25px; -webkit-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); -moz-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); position: fixed; z-index: 10; float: left; }
-#headercontainer, #contentcontainer { width: 1060px; margin: 0 auto; position: relative; }
+#headercontainer, #contentcontainer { width: 960px; margin: 0 auto; position: relative; }
 #contentcontainer { float: none; padding-top: 0px; }
 
 section { margin-bottom: 150px; padding-top: 120px; float: left; }

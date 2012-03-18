@@ -4,7 +4,7 @@
 <html lang="en">
 
 <head>    
-    <title>My Page</title>
+    <title>ZodM</title>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />    
     <link rel="stylesheet" href="style.css" type="text/css" media="screen" />        
 </head>
@@ -15,13 +15,11 @@
 %>
     <header>
     	<div id="headercontainer">    
-    		<h1><a class="introlink anchorLink"><%= zod.getName() %></a></h1>   
+    		<h1><a class="introlink anchorLink" alt="<%= zod.getBio() %>"><%= zod.getName() %></a></h1>   
 			<nav>
 			<ul>
 				<li><a class="introlink anchorLink" href="#intro">Intro</a></li>
 				<li><a class="portfoliolink anchorLink" href="#portfolio">Portfolio</a></li>
-				<li><a class="aboutlink anchorLink" href="#about">About</a></li>
-				<li><a class="contactlink anchorLink" href="#contact">Contact</a></li>
 			</ul>	
 			</nav>			
     	</div>    
@@ -57,6 +55,9 @@
     </section>
 	
 	<footer>
+		<ul>
+			<li><a href="http://twitter.com/mssandy">Follow me on Twitter</a></li>			
+		</ul>	
 		<iframe src="https://www.facebook.com/plugins/like.php?href=http://afternoon-galaxy-4740.herokuapp.com/hello"
         scrolling="no" frameborder="0"
         style="border:none; width:450px; height:80px"></iframe>

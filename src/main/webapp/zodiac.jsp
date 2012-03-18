@@ -52,16 +52,17 @@
     	    </span>	
     	</section>
     			
-    </section>
-	
 	<footer>
 		<ul>
 			<li><a href="http://twitter.com/mssandy">Follow me on Twitter</a></li>			
 		</ul>	
+		
 		<iframe src="https://www.facebook.com/plugins/like.php?href=http://afternoon-galaxy-4740.herokuapp.com/hello"
         scrolling="no" frameborder="0"
         style="border:none; width:450px; height:80px"></iframe>
 	</footer>
+	
+    </section>
     
 </body>
 

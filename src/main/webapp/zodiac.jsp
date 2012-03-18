@@ -27,19 +27,18 @@
 
     <section id="contentcontainer"> 
     
-    	<section class="zodiac">
-		
-			<span class="block">
-				<h2 class="intro"><div class="sub"><%= zod.getSunSign() %></div></h2>				
-				<ul>
-					<li>
-						Chinese Zodiac: <%= zod.getChineseSign() %>
-					</li>
-					<li>
-						Element: <%= zod.getElement() %>
-					</li>
-				</ul>
-			</span>				
+    	<section class="zodiac">	
+
+			<h2 class="intro"><div class="sub"><%= zod.getSunSign() %></div></h2>				
+			<ul>
+				<li>
+					Chinese Zodiac: <%= zod.getChineseSign() %>
+				</li>
+				<li>
+					Element: <%= zod.getElement() %>
+				</li>
+			</ul>
+						
 			<span class="block">
 				<h2 class="about">About Me</h2>  
 				<span class="about">				

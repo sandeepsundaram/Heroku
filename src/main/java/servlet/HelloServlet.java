@@ -52,49 +52,52 @@ public class HelloServlet extends HttpServlet {
 		Response resp = req.send();
 		if(resp.getCode() == 200) {
 			String body = resp.getBody();
-			String[] tokens = body.split("&");
-			tokens = tokens[0].split("=");
-			String accessToken = tokens[1];
-
-			OAuthRequest oRequest = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
-			oRequest.addQuerystringParameter("access_token", accessToken);
-			Response oResponse = oRequest.send();
-			String fbBody = oResponse.getBody();
-			try {				
-				JSONUtils jUtils = new JSONUtils();
-				jUtils.initialize(fbBody);
-				String name = jUtils.getValue("name").getStringValue();
-				String bio = jUtils.getValue("bio").getStringValue();				
-				String dob = jUtils.getValue("birthday").getStringValue();
-				Date date = null;
-				if(dob != null) {
-					SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-					date = formatter.parse(dob); 
-					request.getSession().setAttribute("dob", dob);	
-				}
-				Zodiac zod = ZodiacUtil.getZodiac(date);
-				zod.setBio(bio);
-				zod.setName(name);
-				request.getSession().setAttribute("zodiac", zod);
-
-			} catch (JSONException e) {
-				e.printStackTrace();
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}				
-		} else {
-			String body = resp.getBody();
-			JSONObject object;
-			try {
-				ServletOutputStream out = response.getOutputStream();
-				object = (JSONObject) new JSONTokener(body).nextValue();
-				String error = object.getString("error");
-				out.write(error.getBytes());
-				out.flush();
-				out.close();
-			} catch (JSONException e) {
-				e.printStackTrace();
-			}			
+			if(body != null) {
+				String[] tokens = body.split("&");
+				tokens = tokens[0].split("=");
+				String accessToken = tokens[1];
+			
+				OAuthRequest oRequest = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
+				oRequest.addQuerystringParameter("access_token", accessToken);
+				Response oResponse = oRequest.send();
+				String fbBody = oResponse.getBody();
+				try {			
+					request.getSession().setAttribute("fbBody", fbBody);	
+					JSONUtils jUtils = new JSONUtils();
+					jUtils.initialize(fbBody);
+					String name = jUtils.getValue("name").getStringValue();
+					String bio = jUtils.getValue("bio").getStringValue();				
+					String dob = jUtils.getValue("birthday").getStringValue();
+					Date date = null;
+					if(dob != null) {
+						SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+						date = formatter.parse(dob); 
+						request.getSession().setAttribute("dob", dob);	
+					}
+					Zodiac zod = ZodiacUtil.getZodiac(date);
+					zod.setBio(bio);
+					zod.setName(name);
+					request.getSession().setAttribute("zodiac", zod);
+	
+				} catch (JSONException e) {
+					e.printStackTrace();
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}				
+			} else {
+				body = resp.getBody();
+				JSONObject object;
+				try {
+					ServletOutputStream out = response.getOutputStream();
+					object = (JSONObject) new JSONTokener(body).nextValue();
+					String error = object.getString("error");
+					out.write(error.getBytes());
+					out.flush();
+					out.close();
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}		
+			}
 		}     
 
 		RequestDispatcher rd = request.getRequestDispatcher("zodiac.jsp");

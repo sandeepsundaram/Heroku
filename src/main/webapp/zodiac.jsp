@@ -27,7 +27,7 @@
 
     <section id="contentcontainer"> 
     
-    	<section class="zodiac">	
+    	<section id="zodiac">	
 
 			<h2 class="intro"><div class="sub"><%= zod.getSunSign() %></div></h2>				
 			<ul>

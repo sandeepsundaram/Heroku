@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<%@ page import="model.Zodiac" %>
+
 
 <head>    
     <title>One Page Portfolio with HTML5 and CSS3</title>    
@@ -9,9 +9,7 @@
 </head>
 
 <body>
-<% 
-	Zodiac zod = (Zodiac) session.getAttribute("zodiac");
-%>
+
     <header> 
     	<div id="headercontainer">    
     		<h1><a class="introlink anchorLink" href="#intro">Web Design Portfolio</a></h1>    		

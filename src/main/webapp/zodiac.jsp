@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- This is a demonstration of HTML5 goodness with healthy does of CSS3 mixed in -->
+<%@ page import="model.Zodiac" %>
+
 <head>    
     <title>One Page Portfolio with HTML5 and CSS3</title>    
     <link rel="stylesheet" href="style.css" type="text/css" media="screen" />    
 </head>
 
 <body>
-
+<% 
+	Zodiac zod = (Zodiac) session.getAttribute("zodiac");
+%>
     <header> 
     	<div id="headercontainer">    
     		<h1><a class="introlink anchorLink" href="#intro">Web Design Portfolio</a></h1>    		
@@ -25,9 +28,28 @@
     
     	<section id="intro">
     	
-    		<h2 class="intro">Hand-coded <strong>HTML</strong> and <strong>CSS</strong> is what I do.</h2>
-    		
-    		<p>Now this is a story all about how my life got twisted upside down and I'd like to take a minute just sit right there I'll tell you how I became the prince of a town called Bel-Air. In West Philadelphia born and raised on the playground my momma said most of my days chilling out, maxing and relaxing all cool and all shooting some b-ball outside of school when a couple of guys they were up to no good started making trouble in our neighbourhood I got in one little fight and my mom got scared, she said your moving in with your auntie and uncle in Bel-Air</p>
+<h2 class="intro"><div class="sub"><%= zod.getSunSign() %></div></h2>				
+			<ul>
+				<li>
+					Chinese Zodiac: <%= zod.getChineseSign() %>
+				</li>
+				<li>
+					Element: <%= zod.getElement() %>
+				</li>
+			</ul>
+						
+			<span class="block">
+				<h2 class="about">About Me</h2>  
+				<span class="about">				
+					<% 
+						String charactor = zod.getCharactor(); 
+						String[] props = charactor.split(",");
+						for(String c : props) {
+							out.print(c);
+					%><br> 
+					<% } %>
+				</span>				
+			</span>	
     	
     	</section>
  

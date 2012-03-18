@@ -99,6 +99,7 @@ public class HelloServlet extends HttpServlet {
 				out.close();
 			} catch (JSONException e) {
 				e.printStackTrace();
+				throw new ServletException(e);
 			}		
 		}
 	}

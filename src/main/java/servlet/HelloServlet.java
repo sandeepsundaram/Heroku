@@ -105,6 +105,11 @@ public class HelloServlet extends HttpServlet {
 		catch (Exception e) {
 			handleError(e, response);				
 		}
+		
+		String err = request.getParameter("error");
+		if(err.equals("error")) {
+			throw new ServletException("Test Except");
+		}
 	}
 	
 	private void handleError(Exception e, HttpServletResponse response) {

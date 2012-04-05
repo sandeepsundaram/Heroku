@@ -37,7 +37,12 @@ public class HelloServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
+		String err = request.getParameter("error");
+		if(err != null) {
+			throw new ServletException("Test Except");
+		}
+		
 		try {
 			String code = request.getParameter("code");
 
@@ -105,11 +110,7 @@ public class HelloServlet extends HttpServlet {
 		catch (Exception e) {
 			handleError(e, response);				
 		}
-		
-		String err = request.getParameter("error");
-		if(err.equals("error")) {
-			throw new ServletException("Test Except");
-		}
+
 	}
 	
 	private void handleError(Exception e, HttpServletResponse response) {

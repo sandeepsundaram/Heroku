@@ -23,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import utils.DBUtil;
 import utils.JSONUtils;
 import utils.URLUtils;
 import utils.ZodiacUtil;
@@ -31,14 +32,26 @@ import utils.ZodiacUtil;
 		name = "MyServlet", 
 		urlPatterns = {"/hello"}		
 		)
+
 public class HelloServlet extends HttpServlet {
 
 	private static final String PROTECTED_RESOURCE_URL = "https://graph.facebook.com/me";
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+			throws ServletException, IOException { 
+		
 		try {
+			
+			String db = request.getParameter("db") ;
+			if(db != null) {
+				String now = DBUtil.action();
+				ServletOutputStream out = response.getOutputStream();
+				out.write(("Now: "+now).getBytes());
+				out.flush();
+				out.close();
+				return;
+			}
+			
 			String code = request.getParameter("code");
 
 			String accesstokenURL = "https://graph.facebook.com/oauth/access_token?" + 
@@ -106,10 +119,7 @@ public class HelloServlet extends HttpServlet {
 			handleError(e, response);				
 		}
 		
-		String code = request.getParameter("error") ;
-		if(code.equals("error")) {
-			throw new ServletException("Test Except");
-		}
+
 	}
 	
 	private void handleError(Exception e, HttpServletResponse response) {

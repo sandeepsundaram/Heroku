@@ -39,7 +39,7 @@ public class HelloServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException { 
-		
+
 		try {
 			
 			String db = request.getParameter("db") ;
@@ -118,7 +118,7 @@ public class HelloServlet extends HttpServlet {
 		catch (Exception e) {
 			handleError(e, response);				
 		}
-		
+
 
 	}
 	

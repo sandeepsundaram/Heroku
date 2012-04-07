@@ -1,11 +1,15 @@
 package api;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "customers")
+
 public class Customer {
 	private Long id;
 	private String name;
-	
+
 	public Long getId() {
-		return id;
+		return id; 
 	}
 	public void setId(Long id) {
 		this.id = id;
@@ -16,5 +20,5 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
- 
-	}
+
+}

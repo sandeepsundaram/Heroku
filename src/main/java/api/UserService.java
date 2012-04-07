@@ -16,8 +16,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.json.JSONObject;
-import org.json.JSONStringer;
-import org.json.JSONWriter;
 
 import DBUtils.HibernateUtil;
 
@@ -38,7 +36,7 @@ public class UserService {
 	@Produces("application/json")
 	public String getUser(@PathParam("id") String id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession();
+		Session session = factory.getCurrentSession();
 		
 		Transaction tx = session.beginTransaction();
 		

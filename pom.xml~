@@ -49,18 +49,11 @@
        <version>9.0-801.jdbc4</version>
    </dependency>
     
-	<dependency>
+   <dependency>
       <groupId>org.apache.cxf</groupId>
-      <artifactId>cxf-bundle-jaxrs</artifactId>
-      <!-- 2.3.7 or 2.4.4 or 2.5.0 -->
-      <version>2.4.4</version>
-      
-      <exclusions>
-          <exclusion>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-server</artifactId>
-          </exclusion>
-      </exclusions> 
+      <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+      <version>2.5.0</version>
+   </dependency>
 
    </dependency>
       

@@ -23,7 +23,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import utils.DBUtil;
+import DBUtils.DBUtil;
+
 import utils.JSONUtils;
 import utils.URLUtils;
 import utils.ZodiacUtil;
@@ -50,7 +51,7 @@ public class HelloServlet extends HttpServlet {
 				out.flush();
 				out.close();
 				return;
-			}
+			} 
 			
 			String code = request.getParameter("code");
 

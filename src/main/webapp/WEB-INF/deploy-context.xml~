@@ -13,18 +13,17 @@ http://cxf.apache.org/schemas/jaxrs.xsd"
     default-lazy-init="false">
 
     <import resource="classpath:META-INF/cxf/cxf.xml" />
-    <import resource="classpath:META-INF/cxf/cxf-extension-jaxrs-binding.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
     <jaxrs:server id="myService" address="/">
         <jaxrs:serviceBeans>
-            <ref bean="CustomerService" />
+            <ref bean="UserService" />
         </jaxrs:serviceBeans>
         <jaxrs:extensionMappings>
             <entry key="xml" value="application/xml" />
         </jaxrs:extensionMappings>
     </jaxrs:server>
 
-    <bean id="CustomerService" class="api.CustomerService" />
+    <bean id="UserService" class="api.UserService" />
 
 </beans>

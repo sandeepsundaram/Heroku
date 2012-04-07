@@ -49,7 +49,7 @@ public class CustomerService {
 	@POST
 	@Path("/customers")
 	public Response addCustomer(Customer customer) {
-		return null;
+		return Response.ok().build();
 	}
 
 	@DELETE

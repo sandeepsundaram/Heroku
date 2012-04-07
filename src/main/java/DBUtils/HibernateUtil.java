@@ -25,10 +25,7 @@ public class HibernateUtil {
 			.setProperty("hibernate.connection.url", dbUrl)
 			.setProperty("hibernate.connection.username", username)
 			.setProperty("hibernate.connection.password", password)
-			.setProperty("hibernate.c3p0.min_size", "5")
-			.setProperty("hibernate.c3p0.max_size", "20")
-			.setProperty("hibernate.c3p0.timeout", "1800")
-			.setProperty("hibernate.c3p0.max_statements", "50")
+	
 			.setProperty("hibernate.format_sql", "true")
 			.setProperty("hibernate.hbm2ddl.auto", "update")
 			.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");

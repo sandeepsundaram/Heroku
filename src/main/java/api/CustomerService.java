@@ -43,7 +43,7 @@ public class CustomerService {
 	@Path("/customers/{id}")
 	@Consumes("application/xml")
 	public Response updateCustomer(@PathParam("id") Long id, Customer customer) {
-		return null;
+		return Response.ok().build();
 	}
 
 	@POST
@@ -55,7 +55,7 @@ public class CustomerService {
 	@DELETE
 	@Path("/customers/{id}/")
 	public Response deleteCustomer(@PathParam("id") String id) {
-		return null;
+		return Response.ok().build();
 	}
 
 }

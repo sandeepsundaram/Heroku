@@ -72,7 +72,7 @@ public class UserService {
 	public Response addUser(User user) {
 		
 		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.getCurrentSession(); 
+		Session session = factory.openSession(); 
 		Transaction tx = session.beginTransaction();
 		session.save(user);
 		tx.commit();

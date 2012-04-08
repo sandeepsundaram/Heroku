@@ -11,6 +11,6 @@
 	   
        <h3>Please check for the error given below</h3>	   
        <b>Exception:</b><br> 
-       <font color="red"><%= exception.toString() %></font>
+       <font color="red"><% exception.printStackTrace(new java.io.PrintWriter(out)); %></font>
     </body>
 </html>

@@ -8,7 +8,7 @@
     </head>
     <body>
        <h2>Your application has generated an error</h2>
-	   <%= session.getAttribute("fbBody") %>
+	   
        <h3>Please check for the error given below</h3>	   
        <b>Exception:</b><br> 
        <font color="red"><%= exception.toString() %></font>

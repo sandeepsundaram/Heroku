@@ -15,44 +15,32 @@ public class DBUtil {
 	public static String action() throws Exception{
 
 		Connection connection = null;
+		Statement stmt = null;
 		try {
 			connection= getConnection();
 
 			DatabaseMetaData dbmd = connection.getMetaData();
 
-			ResultSet schemas = dbmd.getSchemas();
-			schemas.next();
-
-			ResultSetMetaData rsMetaData = schemas.getMetaData();
-			int numberOfColumns = rsMetaData.getColumnCount();
-			System.out.println(">> resultSet MetaData column Count= " + numberOfColumns);
-
-			for (int i = 1; i <= numberOfColumns; i++) {
-				System.out.println(">> Schema Column Name " +rsMetaData.getColumnName(i));	
-				System.out.println(">> Schema Column Value " +schemas.getString(i));
-			}
-
-			System.out.println(">> Tables");
-			ResultSet tables = dbmd.getTables("", "", "", null);
-			while (tables.next()) {
-				System.out.println(">> Tables " +tables.getString(3));
-			}
-
 			System.out.println("Connection to "+dbmd.getDatabaseProductName()+" "+
 					dbmd.getDatabaseProductVersion()+" successful.\n");
 
-			Statement stmt = connection.createStatement();
-			String createTable = "CREATE TABLE FB_USER (id varchar(10), name varchar(50), dob varchar(50))";
-			stmt.executeUpdate(createTable);
+			stmt = connection.createStatement();
+	
+			stmt.executeUpdate("DROP TABLE IF EXISTS FB_USER");
+			
+			stmt.executeUpdate("CREATE TABLE FB_USER (id varchar(10), name varchar(50), dob varchar(50))");
 			
 			stmt.executeUpdate("insert into FB_USER (dob, name, id) values ('08-04-2012', 'Sandeep', '2223')");
 
+			
 		} catch(Exception e) { 
 			e.printStackTrace();
 			throw e;
 		}finally {
-			if(connection != null)
+			if(connection != null) {
+				stmt.close();
 				connection.close();
+			}
 		}
 
 		return null;

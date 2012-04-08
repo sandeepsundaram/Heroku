@@ -42,10 +42,10 @@ public class DBUtil {
 					dbmd.getDatabaseProductVersion()+" successful.\n");
 
 			Statement stmt = connection.createStatement();
-			String createTable = "CREATE TABLE USER (id varchar(10), name varchar(50), dob varchar(50))";
+			String createTable = "CREATE TABLE FB_USER (id varchar(10), name varchar(50), dob varchar(50))";
 			stmt.executeUpdate(createTable);
 			
-			stmt.executeUpdate("insert into user (dob, name, id) values ('08-04-2012', 'Sandeep', '2223')");
+			stmt.executeUpdate("insert into FB_USER (dob, name, id) values ('08-04-2012', 'Sandeep', '2223')");
 
 		} catch(Exception e) { 
 			e.printStackTrace();

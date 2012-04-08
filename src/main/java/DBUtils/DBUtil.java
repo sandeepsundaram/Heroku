@@ -17,13 +17,8 @@ public class DBUtil {
 			connection= getConnection();
 
 			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("DROP TABLE IF EXISTS ticks");
-			stmt.executeUpdate("CREATE TABLE ticks (tick timestamp)");
-			stmt.executeUpdate("INSERT INTO ticks VALUES (now())");
-			ResultSet rs = stmt.executeQuery("SELECT tick FROM ticks");
-			while (rs.next()) {
-				return String.valueOf(rs.getTimestamp("tick"));
-			}
+			stmt.executeUpdate("DROP TABLE IF EXISTS USER");
+			stmt.executeUpdate("CREATE TABLE USER (id text, name text, dob text)");
 			
 		} catch(Exception e) { 
 		

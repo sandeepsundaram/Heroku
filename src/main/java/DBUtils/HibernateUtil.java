@@ -33,7 +33,6 @@ public class HibernateUtil {
 			.setProperty("hibernate.connection.password", password)
 	
 			.setProperty("hibernate.format_sql", "true")
-			.setProperty("hibernate.hbm2ddl.auto", "create")
 			.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
 			.configure().buildSessionFactory();
 			

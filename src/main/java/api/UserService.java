@@ -37,7 +37,7 @@ public class UserService {
 	@Produces("application/json")
 	public Response getUser(@PathParam("id") String id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.getCurrentSession(); 
+		Session session = factory.openSession(); 
 		
 		User user = (User) session.get(User.class, id);
 		

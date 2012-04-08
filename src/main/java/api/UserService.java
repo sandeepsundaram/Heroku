@@ -1,6 +1,6 @@
 package api;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -41,7 +41,7 @@ public class UserService {
 		Transaction tx = session.beginTransaction();
 		
 		User user = new User();
-		user.setDob(new Date(2011, 4, 8));
+		user.setDob(new Date());
 		user.setId(id);
 		user.setName("Sandeep");
 		

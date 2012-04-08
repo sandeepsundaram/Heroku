@@ -9,8 +9,6 @@ http://cxf.apache.org/schemas/jaxrs.xsd" default-lazy-init="false">
     <import resource="classpath:META-INF/cxf/cxf.xml" />
     <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
 
-	<bean id='jacksonProvider' class='org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider' />
-
     <jaxrs:server id="myService" address="/">
         <jaxrs:serviceBeans>
             <ref bean="UserService" />
@@ -18,9 +16,9 @@ http://cxf.apache.org/schemas/jaxrs.xsd" default-lazy-init="false">
         <jaxrs:extensionMappings>
             <entry key="xml" value="application/xml" />
         </jaxrs:extensionMappings>
-        <jaxrs:providers>
-			<ref bean='jacksonProvider' />
-		  </jaxrs:providers>
+<jaxrs:providers>
+   <bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"/>
+</jaxrs:providers>
     </jaxrs:server>
 
     <bean id="UserService" class="api.UserService" />

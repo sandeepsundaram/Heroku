@@ -50,8 +50,6 @@ public class UserService {
 		} finally {
 			if(session != null)
 				session.close();
-			if(factory != null)
-				factory.close();
 		}
 
 		return Response.serverError().build();
@@ -75,8 +73,6 @@ public class UserService {
 		} finally {
 			if(session != null)
 				session.close();
-			if(factory != null)
-				factory.close();
 		}
 
 		return Response.ok(user).build();
@@ -111,8 +107,6 @@ public class UserService {
 		} finally {
 			if(session != null)
 				session.close();
-			if(factory != null)
-				factory.close();
 		}
 		return Response.ok(user).build();
 	}

@@ -23,21 +23,22 @@ public class DBUtil {
 					dbmd.getDatabaseProductVersion()+" successful.\n");
 
 			stmt = connection.createStatement();
-	
+
 			stmt.executeUpdate("DROP TABLE IF EXISTS FB_USER");
-			
+
 			stmt.executeUpdate("CREATE TABLE FB_USER (id varchar(10), name varchar(50), dob varchar(50))");
-			
-			stmt.executeUpdate("insert into FB_USER (dob, name, id) values ('08-04-2012', 'Sandeep', '2223')");
-			
+
+			stmt.executeUpdate("insert into FB_USER (dob, name, id) values ('08-04-2012', 'Sandeep', '222')");
+
 		} catch(Exception e) { 
 			e.printStackTrace();
 			throw e;
 		}finally {
-			if(connection != null) {
+			if(stmt != null)
 				stmt.close();
+			if(connection != null)
 				connection.close();
-			}
+
 		}
 	}
 

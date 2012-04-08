@@ -67,7 +67,7 @@ public class UserService {
 
 	@POST
 	@Path("/users")
-	@Consumes({"application/json", "text/xml"})
+	@Consumes("application/json")
 	@Produces("application/json")
 	public Response addUser(User user) {
 		

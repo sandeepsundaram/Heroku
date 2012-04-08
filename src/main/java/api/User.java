@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement(name = "user")
 @Entity
-@Table(name = "user")
+@Table(name = "FB_USER")
 
 public class User {
 

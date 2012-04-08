@@ -1,5 +1,6 @@
 package api;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.ws.rs.Consumes;
@@ -41,7 +42,8 @@ public class UserService {
 		Transaction tx = session.beginTransaction();
 		
 		User user = new User();
-		user.setDob(new Date().toString());
+		SimpleDateFormat sdf = new SimpleDateFormat("mm-dd-yyyy");
+		user.setDob(sdf.format(new Date()));
 		user.setId(id);
 		user.setName("Sandeep");
 		

@@ -25,14 +25,14 @@ public class DBUtil {
 
 			ResultSetMetaData rsMetaData = schemas.getMetaData();
 			int numberOfColumns = rsMetaData.getColumnCount();
-			System.out.println("resultSet MetaData column Count= " + numberOfColumns);
+			System.out.println(">> resultSet MetaData column Count= " + numberOfColumns);
 
 			for (int i = 1; i <= numberOfColumns; i++) {
-				System.out.println(">> Column Name " +rsMetaData.getColumnName(i));	
-				System.out.println(">> Column Value " +schemas.getString(i));
+				System.out.println(">> Schema Column Name " +rsMetaData.getColumnName(i));	
+				System.out.println(">> Schema Column Value " +schemas.getString(i));
 			}
 
-			System.out.println("Tables");
+			System.out.println(">> Tables");
 			ResultSet tables = dbmd.getTables("", "", "", null);
 			while (tables.next()) {
 				System.out.println(">> Tables " +tables.getString(3));
@@ -42,8 +42,10 @@ public class DBUtil {
 					dbmd.getDatabaseProductVersion()+" successful.\n");
 
 			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("CREATE TABLE information_schema.USER (id varchar(10), name varchar(50), dob varchar(50))");
-			stmt.executeUpdate("insert into information_schema.user (dob, name, id) values ('08-04-2012', 'Sandeep', '2223')");
+			String createTable = "CREATE TABLE USER (id varchar(10), name varchar(50), dob varchar(50))";
+			stmt.executeUpdate(createTable);
+			
+			stmt.executeUpdate("insert into user (dob, name, id) values ('08-04-2012', 'Sandeep', '2223')");
 
 		} catch(Exception e) { 
 			e.printStackTrace();

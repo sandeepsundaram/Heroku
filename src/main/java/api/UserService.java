@@ -1,6 +1,5 @@
 package api;
 
-import java.util.Collection;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -11,6 +10,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
 
 import org.hibernate.Query;
@@ -36,11 +36,11 @@ public class UserService {
 		Session session = factory.openSession(); 
 		
 		Query query = session.createQuery("from "+User.class.getName());
-		Collection<User> list = query.list();
+		List<User> list = query.list();
 		
 		session.close();
-		
-		return Response.ok(list).build();
+		final GenericEntity<List<User>> entity = new GenericEntity<List<User>>(list) { };
+		return Response.ok().entity(entity).build();
 	}
 
 	@GET

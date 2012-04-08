@@ -48,8 +48,10 @@ public class UserService {
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {
-			session.close();
-			factory.close();
+			if(session != null)
+				session.close();
+			if(factory != null)
+				factory.close();
 		}
 
 		return Response.serverError().build();
@@ -71,8 +73,10 @@ public class UserService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			session.close();
-			factory.close();
+			if(session != null)
+				session.close();
+			if(factory != null)
+				factory.close();
 		}
 
 		return Response.ok(user).build();
@@ -105,8 +109,10 @@ public class UserService {
 			tx.rollback();
 			e.printStackTrace();
 		} finally {
-			session.close();
-			factory.close();
+			if(session != null)
+				session.close();
+			if(factory != null)
+				factory.close();
 		}
 		return Response.ok(user).build();
 	}

@@ -36,9 +36,12 @@ public class HibernateUtil {
 			.setProperty("hibernate.hbm2ddl.auto", "update")
 			.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
 			.configure().buildSessionFactory();
+			
+			return cfg;
 
 		} catch(Exception e) {
 			e.printStackTrace();
+			System.out.println("ERROR >>>>>> "+ e.getMessage());
 		}
 
 		return null;

@@ -17,6 +17,10 @@ http://cxf.apache.org/schemas/jaxrs.xsd" default-lazy-init="false">
             <entry key="xml" value="application/xml" />
         </jaxrs:extensionMappings>
     </jaxrs:server>
+    
+    <jaxrs:providers>
+   		<bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"/>
+	</jaxrs:providers>
 
     <bean id="UserService" class="api.UserService" />
 

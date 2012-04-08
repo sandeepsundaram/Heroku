@@ -77,6 +77,7 @@ public class UserService {
 		session.save(user);
 		tx.commit();
 	
+		session.close();
 		return Response.ok(user).build();
 	}
 

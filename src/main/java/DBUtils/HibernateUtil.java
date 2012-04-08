@@ -3,7 +3,10 @@ package DBUtils;
 import java.net.URI;
 
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.AnnotationConfiguration;
+import org.hibernate.cfg.SettingsFactory;
+
+import api.User;
 
 public class HibernateUtil {
 
@@ -20,8 +23,9 @@ public class HibernateUtil {
 			
 			System.out.println(dbUrl);
 
-			Configuration cfg = new Configuration()
-			.addClass(api.User.class)
+			SessionFactory cfg = new AnnotationConfiguration()
+			.addPackage("api")
+			.addAnnotatedClass(User.class)
 
 			.setProperty("hibernate.connection.driver_class", "org.postgresql.Driver")
 			.setProperty("hibernate.connection.url", dbUrl)
@@ -30,9 +34,9 @@ public class HibernateUtil {
 	
 			.setProperty("hibernate.format_sql", "true")
 			.setProperty("hibernate.hbm2ddl.auto", "update")
-			.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+			.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
+			.configure().buildSessionFactory();
 
-			return cfg.buildSessionFactory();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

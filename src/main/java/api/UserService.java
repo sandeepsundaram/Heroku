@@ -35,7 +35,7 @@ public class UserService {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession(); 
 		
-		Query query = session.createQuery("from fb_user");
+		Query query = session.createQuery("from "+User.class.getName());
 		Collection<User> list = query.list();
 		
 		session.close();

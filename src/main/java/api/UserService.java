@@ -41,7 +41,7 @@ public class UserService {
 		Transaction tx = session.beginTransaction();
 		
 		User user = new User();
-		user.setDob(new Date());
+		user.setDob(new Date().toString());
 		user.setId(id);
 		user.setName("Sandeep");
 		

@@ -1,7 +1,5 @@
 package api;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,7 +18,7 @@ public class User {
 	@Column(name = "name")
 	private String name;
 	@Column(name = "dob")
-	private Date dob;
+	private String dob;
 
 	public String getId() {
 		return id; 
@@ -34,10 +32,10 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 	

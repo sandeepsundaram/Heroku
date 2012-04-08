@@ -110,7 +110,7 @@ public class HelloServlet extends HttpServlet {
 			}
 		}
 		catch (Exception e) {
-			handleError(e, response);	
+//			handleError(e, response);	
 			throw new ServletException(e);
 		}
 

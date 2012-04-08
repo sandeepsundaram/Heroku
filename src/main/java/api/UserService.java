@@ -1,5 +1,8 @@
 package api;
 
+import java.util.Collection;
+import java.util.List;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -10,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -24,8 +28,19 @@ public class UserService {
 	}
 
 	@GET
-	public User getUsers() {
-		return null;
+	@Path("/users/")
+	@Produces("application/json")
+	public Response getUsers() {
+		
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession(); 
+		
+		Query query = session.createQuery("from fb_user");
+		Collection<User> list = query.list();
+		
+		session.close();
+		
+		return Response.ok(list).build();
 	}
 
 	@GET

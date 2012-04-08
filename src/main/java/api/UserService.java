@@ -35,11 +35,13 @@ public class UserService {
 	@GET
 	@Path("/users/{id}")
 	@Produces("application/json")
-	public User getUser(@PathParam("id") String id) {
+	public Response getUser(@PathParam("id") String id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession(); 
 		
-		return (User) session.get(User.class, id);
+		User user = (User) session.get(User.class, id);
+		
+		return Response.ok(user).build();
 	}
 
 	@PUT

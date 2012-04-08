@@ -17,6 +17,7 @@ public class DBUtil {
 		try {
 			connection= getConnection();
 			
+			dbName = dbName.substring(1, dbName.length());
 			System.out.println("DROP TABLE IF EXISTS "+ dbName + ".USER");
 			
 			Statement stmt = connection.createStatement();

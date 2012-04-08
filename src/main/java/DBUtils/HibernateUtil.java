@@ -17,6 +17,8 @@ public class HibernateUtil {
 			String username = dbUri.getUserInfo().split(":")[0];
 			String password = dbUri.getUserInfo().split(":")[1];
 			String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbUri.getPath();
+			
+			System.out.println(dbUrl);
 
 			Configuration cfg = new Configuration()
 			.addClass(api.User.class)

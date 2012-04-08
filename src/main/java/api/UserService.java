@@ -13,6 +13,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.Response;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -32,29 +33,48 @@ public class UserService {
 	@Path("/users/")
 	@Produces("application/json")
 	public Response getUsers() {
-		
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession(); 
-		
-		Query query = session.createQuery("from "+User.class.getName());
-		List<User> list = query.list();
-		
-		session.close();
-		final GenericEntity<List<User>> entity = new GenericEntity<List<User>>(list) { };
-		return Response.ok().entity(entity).build();
+
+		Session session = null;
+		SessionFactory factory = null;
+		try {
+			factory = HibernateUtil.getSessionFactory();
+			session = factory.openSession(); 
+
+			Query query = session.createQuery("from "+User.class.getName());
+			List<User> list = query.list();
+
+			final GenericEntity<List<User>> entity = new GenericEntity<List<User>>(list) { };
+			return Response.ok().entity(entity).build();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			session.close();
+			factory.close();
+		}
+
+		return Response.serverError().build();
 	}
 
 	@GET
 	@Path("/users/{id}")
 	@Produces("application/json")
 	public Response getUser(@PathParam("id") String id) {
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession(); 
-		
-		User user = (User) session.get(User.class, id);
-		
-		session.close();
-		
+		SessionFactory factory = null;
+		Session session = null;
+		User user = null;
+		try {
+			factory = HibernateUtil.getSessionFactory();
+			session = factory.openSession(); 
+
+			user = (User) session.get(User.class, id);
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			session.close();
+			factory.close();
+		}
+
 		return Response.ok(user).build();
 	}
 
@@ -71,14 +91,23 @@ public class UserService {
 	@Consumes("application/json")
 	@Produces("application/json")
 	public Response addUser(User user) {
-		
-		SessionFactory factory = HibernateUtil.getSessionFactory();
-		Session session = factory.openSession(); 
-		Transaction tx = session.beginTransaction();
-		session.save(user);
-		tx.commit();
-	
-		session.close();
+
+		Session session = null;
+		Transaction tx = null;
+		SessionFactory factory = null;
+		try {
+			factory = HibernateUtil.getSessionFactory();
+			session = factory.openSession(); 
+			tx = session.beginTransaction();
+			session.save(user);
+			tx.commit();
+		} catch (HibernateException e) {
+			tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+			factory.close();
+		}
 		return Response.ok(user).build();
 	}
 
@@ -87,7 +116,7 @@ public class UserService {
 	public Response deleteUser(@PathParam("id") String id) {
 		return Response.ok().build();
 	}
-	
+
 	@DELETE
 	@Path("/users/DBCleanup/")
 	public Response dbCleanUp() {

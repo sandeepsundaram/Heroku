@@ -31,7 +31,14 @@ public class HibernateUtil {
 			.setProperty("hibernate.connection.url", dbUrl)
 			.setProperty("hibernate.connection.username", username)
 			.setProperty("hibernate.connection.password", password)
-	
+			
+			.setProperty("hibernate.c3p0.max_size","1")
+			.setProperty("hibernate.c3p0.min_size","0")
+			.setProperty("hibernate.c3p0.timeout","5000")
+			.setProperty("hibernate.c3p0.max_statements","100")
+			.setProperty("hibernate.c3p0.idle_test_period","300")
+			.setProperty("hibernate.c3p0.acquire_increment","2")
+			
 			.setProperty("hibernate.format_sql", "true")
 			.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
 			.configure().buildSessionFactory();

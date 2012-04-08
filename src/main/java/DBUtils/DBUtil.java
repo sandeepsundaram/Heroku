@@ -19,6 +19,7 @@ public class DBUtil {
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate("DROP TABLE IF EXISTS USER");
 			stmt.executeUpdate("CREATE TABLE USER (id text, name text, dob text)");
+			stmt.executeUpdate("insert into user (dob, name, id) values (Sun Apr 08 09:08:40 UTC 2012, Sandeep, 2221)");
 			
 		} catch(Exception e) { 
 		

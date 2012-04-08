@@ -11,34 +11,40 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBUtil {
-	
+
 	public static String action() throws Exception{
 
 		Connection connection = null;
 		try {
 			connection= getConnection();
-			
-		    DatabaseMetaData dbmd = connection.getMetaData(); //get MetaData to confirm connection
-		    ResultSet schemas = dbmd.getSchemas();
-		    schemas.next();
-		    
-		    ResultSetMetaData rsMetaData = schemas.getMetaData();
-		    int numberOfColumns = rsMetaData.getColumnCount();
-		    System.out.println("resultSet MetaData column Count= " + numberOfColumns);
 
-		    for (int i = 1; i <= numberOfColumns; i++) {
-		      System.out.println(">> Column MetaData "); 
-		      System.out.println(">> Column Name " +rsMetaData.getColumnName(i));	
-		      System.out.println(">> Column Value " +schemas.getString(i));
-		    }
+			DatabaseMetaData dbmd = connection.getMetaData();
 
-		    System.out.println("Connection to "+dbmd.getDatabaseProductName()+" "+
-		                       dbmd.getDatabaseProductVersion()+" successful.\n");
-			
+			ResultSet schemas = dbmd.getSchemas();
+			schemas.next();
+
+			ResultSetMetaData rsMetaData = schemas.getMetaData();
+			int numberOfColumns = rsMetaData.getColumnCount();
+			System.out.println("resultSet MetaData column Count= " + numberOfColumns);
+
+			for (int i = 1; i <= numberOfColumns; i++) {
+				System.out.println(">> Column Name " +rsMetaData.getColumnName(i));	
+				System.out.println(">> Column Value " +schemas.getString(i));
+			}
+
+			System.out.println("Tables");
+			ResultSet tables = dbmd.getTables("", "", "", null);
+			while (tables.next()) {
+				System.out.println(">> Tables " +tables.getString(3));
+			}
+
+			System.out.println("Connection to "+dbmd.getDatabaseProductName()+" "+
+					dbmd.getDatabaseProductVersion()+" successful.\n");
+
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate("CREATE TABLE information_schema.USER (id varchar(10), name varchar(50), dob varchar(50))");
 			stmt.executeUpdate("insert into information_schema.user (dob, name, id) values ('08-04-2012', 'Sandeep', '2223')");
-			
+
 		} catch(Exception e) { 
 			e.printStackTrace();
 			throw e;
@@ -46,7 +52,7 @@ public class DBUtil {
 			if(connection != null)
 				connection.close();
 		}
-		
+
 		return null;
 	}
 
@@ -57,7 +63,7 @@ public class DBUtil {
 		String password = dbUri.getUserInfo().split(":")[1];
 		String dbName = dbUri.getPath();
 		String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + dbName;
-		
+
 		Class.forName("org.postgresql.Driver"); 
 		return DriverManager.getConnection(dbUrl, username, password);
 	}

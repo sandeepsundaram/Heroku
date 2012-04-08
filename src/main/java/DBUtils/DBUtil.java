@@ -5,14 +5,12 @@ import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DBUtil {
 
-	public static String action() throws Exception{
+	public static void cleanup() throws Exception{
 
 		Connection connection = null;
 		Statement stmt = null;
@@ -31,7 +29,6 @@ public class DBUtil {
 			stmt.executeUpdate("CREATE TABLE FB_USER (id varchar(10), name varchar(50), dob varchar(50))");
 			
 			stmt.executeUpdate("insert into FB_USER (dob, name, id) values ('08-04-2012', 'Sandeep', '2223')");
-
 			
 		} catch(Exception e) { 
 			e.printStackTrace();
@@ -42,8 +39,6 @@ public class DBUtil {
 				connection.close();
 			}
 		}
-
-		return null;
 	}
 
 	private static Connection getConnection() throws URISyntaxException, SQLException, ClassNotFoundException {

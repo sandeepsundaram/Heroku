@@ -25,7 +25,6 @@ import org.json.JSONTokener;
 import utils.JSONUtils;
 import utils.URLUtils;
 import utils.ZodiacUtil;
-import DBUtils.DBUtil;
 
 public class HelloServlet extends HttpServlet {
 
@@ -34,17 +33,7 @@ public class HelloServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException { 
 
-		try {
-			
-			String db = request.getParameter("db") ;
-			if(db != null) {
-				String now = DBUtil.action();
-				ServletOutputStream out = response.getOutputStream();
-				out.write("Done".getBytes());
-				out.flush();
-				out.close();
-				return;
-			} 
+		try { 
 			
 			String code = request.getParameter("code");
 

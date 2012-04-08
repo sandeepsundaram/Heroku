@@ -18,6 +18,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import DBUtils.DBUtil;
 import DBUtils.HibernateUtil;
 
 @Path("/userservice/")
@@ -84,6 +85,17 @@ public class UserService {
 	@DELETE
 	@Path("/users/{id}/")
 	public Response deleteUser(@PathParam("id") String id) {
+		return Response.ok().build();
+	}
+	
+	@DELETE
+	@Path("/users/DBCleanup/")
+	public Response dbCleanUp() {
+		try {
+			DBUtil.cleanup();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return Response.ok().build();
 	}
 

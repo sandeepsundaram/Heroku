@@ -8,7 +8,6 @@ import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,16 +22,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import DBUtils.DBUtil;
-
 import utils.JSONUtils;
 import utils.URLUtils;
 import utils.ZodiacUtil;
-
-@WebServlet(
-		name = "MyServlet", 
-		urlPatterns = {"/hello"}		
-		)
+import DBUtils.DBUtil;
 
 public class HelloServlet extends HttpServlet {
 
@@ -47,7 +40,7 @@ public class HelloServlet extends HttpServlet {
 			if(db != null) {
 				String now = DBUtil.action();
 				ServletOutputStream out = response.getOutputStream();
-				out.write(("Now: "+now).getBytes());
+				out.write("Done".getBytes());
 				out.flush();
 				out.close();
 				return;

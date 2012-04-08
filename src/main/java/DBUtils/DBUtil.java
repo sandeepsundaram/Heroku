@@ -4,7 +4,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -19,10 +18,10 @@ public class DBUtil {
 			Statement stmt = connection.createStatement();
 			stmt.executeUpdate("DROP TABLE IF EXISTS USER");
 			stmt.executeUpdate("CREATE TABLE USER (id text, name text, dob text)");
-			stmt.executeUpdate("insert into user (dob, name, id) values (Sun Apr 08 09:08:40 UTC 2012, Sandeep, 2221)");
+			stmt.executeUpdate("insert into user (dob, name, id) values (08-04-2012, Sandeep, 2223)");
 			
 		} catch(Exception e) { 
-		
+			e.printStackTrace();
 		}finally {
 			if(connection != null)
 				connection.close();

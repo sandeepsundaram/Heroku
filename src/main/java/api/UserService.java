@@ -30,7 +30,7 @@ public class UserService {
 	@GET
 	@Path("/users/")
 	@Produces("application/json")
-	public List<User> getUsers() {
+	public Response getUsers() {
 		
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.openSession(); 
@@ -39,9 +39,8 @@ public class UserService {
 		List<User> list = query.list();
 		
 		session.close();
-//		final GenericEntity<List<User>> entity = new GenericEntity<List<User>>(list) { };
-//		return Response.ok().entity(entity).build();
-		return list;
+		final GenericEntity<List<User>> entity = new GenericEntity<List<User>>(list) { };
+		return Response.ok().entity(entity).build();
 	}
 
 	@GET

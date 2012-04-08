@@ -1,8 +1,5 @@
 package api;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -16,7 +13,6 @@ import javax.ws.rs.core.Response;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.json.JSONObject;
 
 import DBUtils.HibernateUtil;
 
@@ -41,18 +37,23 @@ public class UserService {
 		
 		User user = (User) session.get(User.class, id);
 		
+		session.close();
+		
 		return Response.ok(user).build();
 	}
 
 	@PUT
 	@Path("/users/{id}")
-	@Consumes("application/json")
+	@Consumes({"application/json", "text/xml"})
+	@Produces("application/json")
 	public Response updateUser(@PathParam("id") String id, User user) {
 		return Response.ok().build();
 	}
 
 	@POST
 	@Path("/users")
+	@Consumes({"application/json", "text/xml"})
+	@Produces("application/json")
 	public Response addUser(User user) {
 		
 		SessionFactory factory = HibernateUtil.getSessionFactory();

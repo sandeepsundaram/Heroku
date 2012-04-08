@@ -22,10 +22,6 @@ http://cxf.apache.org/schemas/jaxrs.xsd" default-lazy-init="false">
 			<ref bean='jacksonProvider' />
 		  </jaxrs:providers>
     </jaxrs:server>
-    
-    <jaxrs:providers>
-   		<bean class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"/>
-	</jaxrs:providers>
 
     <bean id="UserService" class="api.UserService" />
 

@@ -35,19 +35,18 @@ public class UserService {
 	@Path("/users/{id}")
 	@Produces("application/json")
 	public String getUser(@PathParam("id") String id) {
+		
 		SessionFactory factory = HibernateUtil.getSessionFactory();
-//		Session session = factory.getCurrentSession(); 
-//		
-//		Transaction tx = session.beginTransaction();
+		Session session = factory.getCurrentSession(); 
+		Transaction tx = session.beginTransaction();
 		
 		User user = new User();
 		user.setDob(new Date(2011, 4, 8));
 		user.setId(id);
 		user.setName("Sandeep");
 		
-//		session.save(user);
-//		
-//		tx.commit();
+		session.save(user);
+		tx.commit();
 		
 		JSONObject obj = new JSONObject(user);
 		return obj.toString();

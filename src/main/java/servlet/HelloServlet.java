@@ -110,7 +110,8 @@ public class HelloServlet extends HttpServlet {
 			}
 		}
 		catch (Exception e) {
-			handleError(e, response);				
+			handleError(e, response);	
+			throw new ServletException(e);
 		}
 
 
@@ -123,6 +124,7 @@ public class HelloServlet extends HttpServlet {
 			out.write("Test Page".getBytes());
 			out.flush();
 			out.close();
+			return;
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}

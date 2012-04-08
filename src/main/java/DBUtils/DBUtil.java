@@ -21,7 +21,7 @@ public class DBUtil {
 			stmt.executeUpdate("insert into user (dob, name, id) values ('08-04-2012', 'Sandeep', '2223')");
 			
 		} catch(Exception e) { 
-			e.printStackTrace();
+			throw e;
 		}finally {
 			if(connection != null)
 				connection.close();

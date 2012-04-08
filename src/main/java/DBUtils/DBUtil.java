@@ -27,19 +27,17 @@ public class DBUtil {
 		    System.out.println("resultSet MetaData column Count= " + numberOfColumns);
 
 		    for (int i = 1; i <= numberOfColumns; i++) {
-		      System.out.println("column MetaData ");
-		      System.out.println("column number " + i); 
-		      System.out.println(rsMetaData.getColumnName(i));	
-		      System.out.println("column value " + i); 
-		      System.out.println(schemas.getString(i));
+		      System.out.println(">> Column MetaData "); 
+		      System.out.println(">> Column Name " +rsMetaData.getColumnName(i));	
+		      System.out.println(">> Column Value " +schemas.getString(i));
 		    }
 
 		    System.out.println("Connection to "+dbmd.getDatabaseProductName()+" "+
 		                       dbmd.getDatabaseProductVersion()+" successful.\n");
 			
 			Statement stmt = connection.createStatement();
-			stmt.executeUpdate("CREATE TABLE USER (id varchar(10), name varchar(50), dob varchar(50))");
-			stmt.executeUpdate("insert into user (dob, name, id) values ('08-04-2012', 'Sandeep', '2223')");
+			stmt.executeUpdate("CREATE TABLE information_schema.USER (id varchar(10), name varchar(50), dob varchar(50))");
+			stmt.executeUpdate("insert into information_schema.user (dob, name, id) values ('08-04-2012', 'Sandeep', '2223')");
 			
 		} catch(Exception e) { 
 			e.printStackTrace();

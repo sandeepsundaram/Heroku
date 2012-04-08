@@ -35,36 +35,31 @@ public class UserService {
 	@GET
 	@Path("/users/{id}")
 	@Produces("application/json")
-	public String getUser(@PathParam("id") String id) {
-		
+	public User getUser(@PathParam("id") String id) {
 		SessionFactory factory = HibernateUtil.getSessionFactory();
 		Session session = factory.getCurrentSession(); 
-		Transaction tx = session.beginTransaction();
 		
-		User user = new User();
-		SimpleDateFormat sdf = new SimpleDateFormat("mm-dd-yyyy");
-		user.setDob(sdf.format(new Date()));
-		user.setId(id);
-		user.setName("Sandeep");
-		
-		session.save(user);
-		tx.commit();
-		
-		JSONObject obj = new JSONObject(user);
-		return obj.toString();
+		return (User) session.get(User.class, id);
 	}
 
 	@PUT
 	@Path("/users/{id}")
-	@Consumes("application/xml")
-	public Response updateUser(@PathParam("id") Long id, User User) {
+	@Consumes("application/json")
+	public Response updateUser(@PathParam("id") String id, User user) {
 		return Response.ok().build();
 	}
 
 	@POST
 	@Path("/users")
-	public Response addUser(User User) {
-		return Response.ok().build();
+	public Response addUser(User user) {
+		
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.getCurrentSession(); 
+		Transaction tx = session.beginTransaction();
+		session.save(user);
+		tx.commit();
+	
+		return Response.ok(user).build();
 	}
 
 	@DELETE

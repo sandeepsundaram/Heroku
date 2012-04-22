@@ -47,7 +47,7 @@ div.sub { font-size:28px;color: #ff5400; }
 span { font-size: 18px; float: left; color: #4b4b4b; }
 span.block {padding-top: 30px;}
 
-#zodiac {background-color: white; padding-left: 80px; padding-right: 80px; padding-top: 30px; }
+#zodiac {background-color: white; padding-left: 40px; padding-right: 120px; padding-bottom: 100px; border-style:ridge;}
 #zodiac ul { padding-left: 80px; font-size: 14px; }
 
 span.about { padding-left: 80px; font-size: 14px;}

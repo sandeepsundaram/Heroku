@@ -4,11 +4,6 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-/**
- * Utils to deal with URL and url-encodings
- *
- * @author Pablo Fernandez
- */
 public class URLUtils
 {
   private static final String EMPTY_STRING = "";
@@ -42,7 +37,6 @@ public class URLUtils
    */
   public static String formURLEncodeMap(Map<String, String> map)
   {
-    Preconditions.checkNotNull(map, "Cannot url-encode a null object");
     return (map.size() <= 0) ? EMPTY_STRING : doFormUrlEncode(map);
   }
 
@@ -71,7 +65,6 @@ public class URLUtils
    */
   public static String percentEncode(String string)
   {
-    Preconditions.checkNotNull(string, "Cannot encode null string");
     try
     {
       String encoded = URLEncoder.encode(string, UTF_8);
@@ -95,7 +88,6 @@ public class URLUtils
    */
   public static String urlEncodeWrapper(String string)
   {
-    Preconditions.checkNotNull(string, "Cannot encode null string");
     try
     {
       return URLEncoder.encode(string, UTF_8);
@@ -114,7 +106,6 @@ public class URLUtils
    */
   public static String urlDecodeWrapper(String string)
   {
-    Preconditions.checkNotNull(string, "Cannot decode null string");
     try
     {
       return URLDecoder.decode(string, UTF_8);
@@ -134,7 +125,6 @@ public class URLUtils
    */
   public static String appendParametersToQueryString(String url, Map<String, String> params)
   {
-    Preconditions.checkNotNull(url, "Cannot append to null URL");
     String queryString = URLUtils.formURLEncodeMap(params);
     if (queryString.length() == 0) return url;
 

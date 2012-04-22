@@ -28,13 +28,14 @@ import utils.ZodiacUtil;
 
 public class HelloServlet extends HttpServlet {
 
+	private static final long serialVersionUID = -930386857509367419L;
 	private static final String PROTECTED_RESOURCE_URL = "https://graph.facebook.com/me";
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException { 
 
 		try { 
-			
+
 			String code = request.getParameter("code");
 
 			String accesstokenURL = "https://graph.facebook.com/oauth/access_token?" + 
@@ -51,39 +52,47 @@ public class HelloServlet extends HttpServlet {
 				if(body != null) {
 					String[] tokens = body.split("&");
 					tokens = tokens[0].split("=");
-					String accessToken = tokens[1];
+
+					String accessToken = null;
+					if (tokens[0].equals("access_token")) {
+						accessToken = tokens[1];
+					}
 
 					OAuthRequest oRequest = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
 					oRequest.addQuerystringParameter("access_token", accessToken);
 					Response oResponse = oRequest.send();
-					String fbBody = oResponse.getBody();
-					try {			
-						request.getSession().setAttribute("fbBody", fbBody);	
-						JSONUtils jUtils = new JSONUtils();
-						jUtils.initialize(fbBody);
-						String name = jUtils.getValue("name").getStringValue();
-						String bio = jUtils.getValue("bio").getStringValue();				
-						String dob = jUtils.getValue("birthday").getStringValue();
-						Date date = null;
-						if(dob != null) {
-							SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
-							date = formatter.parse(dob); 
-							request.getSession().setAttribute("dob", dob);	
-						}
-						Zodiac zod = ZodiacUtil.getZodiac(date);
-						zod.setBio(bio);
-						zod.setName(name);
-						request.getSession().setAttribute("zodiac", zod);
+					if(oResponse != null && oResponse.getCode() == 200) {
+						String fbBody = oResponse.getBody();
+						try {			
+							request.getSession().setAttribute("fbBody", fbBody);	
+							JSONUtils jUtils = new JSONUtils();
+							jUtils.initialize(fbBody);
+							String name = jUtils.getValue("name").getStringValue();
+							String bio = jUtils.getValue("bio").getStringValue();				
+							String dob = jUtils.getValue("birthday").getStringValue();
+							String id = jUtils.getValue("id").getStringValue();
 
-					} catch (JSONException e) {
-						handleError(e, response);
-					} catch (ParseException e) {
-						handleError(e, response);
-					}				
+							if(dob != null) {
+								SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+								Date date = formatter.parse(dob); 
+								request.getSession().setAttribute("dob", dob);	
+								Zodiac zod = ZodiacUtil.getZodiac(date);
+								zod.setBio(bio);
+								zod.setName(name);
+								request.getSession().setAttribute("zodiac", zod);
+							} else {
+								request.getSession().setAttribute("zodiac", new Zodiac());
+							}
+						} catch (JSONException e) {
+							handleError(e);
+						} catch (ParseException e) {
+							handleError(e);
+						}		
+					}
 				} 
 				RequestDispatcher rd = request.getRequestDispatcher("zodiac.jsp");
 				rd.forward(request, response);
-			} else {			
+			} else if(resp != null) {			
 				String body = resp.getBody();
 				JSONObject object;
 				try {
@@ -94,29 +103,19 @@ public class HelloServlet extends HttpServlet {
 					out.flush();
 					out.close();
 				} catch (Exception e) {
-					handleError(e, response);	
+					handleError(e);	
 				}		
 			}
 		}
-		catch (Exception e) {
-//			handleError(e, response);	
-			throw new ServletException(e);
+		catch (Throwable e) {	
+			handleError(e);
 		}
-
 
 	}
-	
-	private void handleError(Exception e, HttpServletResponse response) {
+
+	private void handleError(Throwable e) throws ServletException {
 		e.printStackTrace();
-		try {
-			ServletOutputStream out = response.getOutputStream();
-			out.write("Test Page".getBytes());
-			out.flush();
-			out.close();
-			return;
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+		throw new ServletException(e);
 	}
 
 

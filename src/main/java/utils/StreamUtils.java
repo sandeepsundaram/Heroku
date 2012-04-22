@@ -17,7 +17,6 @@ public class StreamUtils
    */
   public static String getStreamContents(InputStream is)
   {
-    Preconditions.checkNotNull(is, "Cannot get String from a null object");
     try
     {
       final char[] buffer = new char[0x10000];

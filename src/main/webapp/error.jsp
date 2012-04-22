@@ -4,10 +4,10 @@
 <%@ page import = "java.io.*" %>
 <HTML>
     <HEAD>
-        <TITLE> custom error page </TITLE>
+        <TITLE> ZODM error page </TITLE>
     </head>
     <body>
-       <h2>Your application has generated an error</h2>
+       <h2>The application has generated an error</h2>
 	   
        <h3>Please check for the error given below</h3>	   
        <b>Exception:</b><br> 

@@ -23,7 +23,7 @@ public class ZodiacUtil {
 			"\"capricorn\":\"Practical and prudent,Ambitious and disciplined,Patient and careful,Humorous and reserved,Pessimistic and fanalistic,Miserly and grudging\",\r\n" + 
 			"\"aquarius\":\"Friendly and humanitarian,Honest and loyal,Original and inventive,Independent and intelluctual,Intractale and contrary,Preverse and unpredictable,Unemotional and detached\",\r\n" + 
 			"\"pisces\":\"Imaginative and sensitive,Compassionate and kind,Selfless and unworldly,Intuitive and sympathetic,Escapist and idealistic,Secretive and vague,Weak-willed and easily lead\",\r\n" + 
-			"\"aries\":\"Adventorous and energetic,Pioneering and courageous,Enthusiastic and confident,Dynamic and quick-witted,Selfish and quick-tempered,Impulsive and impatient,Foolhardy and daredevil\"\r\n" + 
+			"\"aries\":\"Adventurous and energetic,Pioneering and courageous,Enthusiastic and confident,Dynamic and quick-witted,Selfish and quick-tempered,Impulsive and impatient,Foolhardy and daredevil\"\r\n" + 
 			"}";
 	
 	public static void main(String[] a) throws JSONException {

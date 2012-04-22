@@ -15,7 +15,7 @@
 %>
     <header>
     	<div id="headercontainer">    
-    		<h1><a class="introlink anchorLink" alt="<%= zod.getBio() %>"><%= zod.getName() %></a></h1>   
+    		<h1><a class="introlink anchorLink" ><%= zod.getName() %></a></h1>   
 			<nav>
 			<ul>
 				<li><a class="introlink anchorLink" href="#intro">Intro</a></li>
@@ -27,7 +27,7 @@
 
     <section id="contentcontainer"> 
     
-    	<section id="zodiac">	
+    	<section id="zodiac" class="rounded-corners">	
 
 			<h2 class="intro"><div class="sub"><%= zod.getSunSign() %></div></h2>				
 			<ul>

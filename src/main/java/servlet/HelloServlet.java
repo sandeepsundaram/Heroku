@@ -41,9 +41,9 @@ public class HelloServlet extends HttpServlet {
 			String accesstokenURL = "https://graph.facebook.com/oauth/access_token?" + 
 					"client_id=%s&redirect_uri=%s&client_secret=%s&code=%s";
 
-			accesstokenURL = String.format(accesstokenURL, "284063838333812", 
+			accesstokenURL = String.format(accesstokenURL, "", 
 					URLUtils.urlEncodeWrapper("http://afternoon-galaxy-4740.herokuapp.com/hello"), 
-					"2f00e440583d9fb8384b2a399e22b69e", code);		
+					"", code);		
 
 			Request req = new Request(Verb.GET, accesstokenURL);
 			Response resp = req.send();

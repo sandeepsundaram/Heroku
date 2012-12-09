@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Create a Java Web Application using Embedded Tomcat
 
 This tutorial will show you how to create a simple Java web application using embedded Tomcat.
@@ -251,3 +252,9 @@ Congratulations! Your web app should now be up and running on Heroku. Open it in
     $ heroku open
 
 
+=======
+Heroku
+======
+
+Heroku
+>>>>>>> f8b466c1f6222b9ebd65437a46221c2856126802
